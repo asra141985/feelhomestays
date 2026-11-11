@@ -183,6 +183,9 @@
   .price .num{font-size:1.7rem; font-weight:500; color:var(--ink); font-variant-numeric:tabular-nums;}
   .price .per{font-size:.8rem; color:var(--ink-soft);}
   .note{font-size:.78rem; color:var(--accent-2); margin-top:6px;}
+  .rating{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px; margin-top:8px; font-size:.8rem; color:var(--ink-soft);}
+  .rating .stars{font-family:'IBM Plex Mono', monospace; font-weight:500; color:var(--ink); font-variant-numeric:tabular-nums;}
+  .rating .src{flex-basis:100%; font-size:.72rem;}
   .btn{
     display:inline-flex; align-items:center; justify-content:center; gap:8px;
     background:var(--accent); color:var(--accent-ink);
@@ -286,7 +289,7 @@
         <div class="card-side">
           <div>
             <div class="price"><span class="num">€100</span> <span class="per">/ night</span></div>
-            <div class="note">4.25★ · 32 reviews · 8 years hosting</div>
+            <div class="rating" title="Average guest rating, as of November 2026"><span class="stars">★ 4.0</span><span class="count">8 reviews</span><span class="src">Airbnb 4/5 (8)</span></div>
           </div>
           <div class="actions"><a class="btn" href="book.html#cosy">Check dates &amp; book direct</a><span class="alt">or view on <a href="https://airbnb.com/h/tfh" target="_blank" rel="noopener">Airbnb</a> · <a href="https://www.booking.com/hotel/de/cozy-room-with-balcony-frankfurt-am-main.html" target="_blank" rel="noopener">Booking.com</a></span></div>
         </div>
@@ -308,7 +311,7 @@
         <div class="card-side">
           <div>
             <div class="price"><span class="num">€100</span> <span class="per">/ night</span></div>
-            <div class="note">4.25★ · 32 reviews · 8 years hosting</div>
+            <div class="rating" title="Average guest rating, as of November 2026"><span class="stars">★ 3.5</span><span class="count">2 reviews</span><span class="src">Airbnb 3.5/5 (2)</span></div>
           </div>
           <div class="actions"><a class="btn" href="book.html#feelhome">Check dates &amp; book direct</a><span class="alt">or view on <a href="https://www.airbnb.com/rooms/1267830066550109153" target="_blank" rel="noopener">Airbnb</a> · <a href="https://www.booking.com/hotel/de/family-room-frankfurt-am-main.html" target="_blank" rel="noopener">Booking.com</a></span></div>
         </div>
@@ -330,6 +333,7 @@
         <div class="card-side">
           <div>
             <div class="price"><span class="num">€203</span> <span class="per">/ night</span></div>
+            <div class="rating" title="Average guest rating, as of November 2026"><span class="stars">★ 4.6</span><span class="count">9 reviews</span><span class="src">Airbnb 4.56/5 (9)</span></div>
             <div class="note">Currently listed for stays of 30+ nights</div>
           </div>
           <div class="actions"><a class="btn" href="book.html#flat">Check dates &amp; book direct</a><span class="alt">or view on <a href="https://www.airbnb.com/rooms/1020203116397338655" target="_blank" rel="noopener">Airbnb</a> · <a href="https://www.booking.com/hotel/de/full-flat-in-city-centre-with-balcony.html" target="_blank" rel="noopener">Booking.com</a></span></div>
@@ -428,8 +432,8 @@
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.25",
-    "reviewCount": "32"
+    "ratingValue": "4.21",
+    "reviewCount": "19"
   }
 }
 </script>

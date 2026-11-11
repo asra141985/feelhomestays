@@ -35,11 +35,13 @@ export function parseIcal(text) {
   for (const line of lines) {
     if (line === "BEGIN:VEVENT") ev = {};
     else if (line === "END:VEVENT") {
-      if (ev && ev.start && ev.end && ev.end > ev.start) ranges.push([ev.start, ev.end]);
+      if (ev && ev.start && ev.end && ev.end > ev.start) ranges.push([ev.start, ev.end, ev.summary || ""]);
       ev = null;
     } else if (ev) {
       const m = line.match(/^(DTSTART|DTEND)[^:]*:(\d{8})/);
       if (m) ev[m[1] === "DTSTART" ? "start" : "end"] = toIso(m[2]);
+      const sm = line.match(/^SUMMARY[^:]*:(.*)$/);
+      if (sm) ev.summary = sm[1].trim();
     }
   }
   return ranges;
@@ -53,7 +55,15 @@ async function icalRanges(urls) {
     try {
       const res = await fetch(url, { headers: { "user-agent": "feelhomestays-availability" } });
       if (!res.ok) throw new Error(String(res.status));
-      ranges.push(...parseIcal(await res.text()));
+      // Airbnb marks nights closed by the host (and dates imported from other
+      // calendars) as "Airbnb (Not available)". Only its real reservations
+      // block this site, so direct bookings stay possible while the platforms
+      // are closed. Other calendars (Booking.com, HousingAnywhere) count fully.
+      const airbnb = /(^|\.)airbnb\./i.test(new URL(url).hostname);
+      for (const [a, z, summary] of parseIcal(await res.text())) {
+        if (airbnb && /not available/i.test(summary)) continue;
+        ranges.push([a, z]);
+      }
     } catch {
       ok = false;
     }
