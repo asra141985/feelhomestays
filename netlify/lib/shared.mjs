@@ -14,6 +14,8 @@ export const SPACES = {
   flat:     { name: "Flat with Balcony",        rate: 203, sleeps: 4, minNights: 30, ical: "ICAL_FLAT" },
 };
 
+const ROOMS_IN_FLAT = ["cosy", "feelhome"];
+
 export const env = (k) => process.env[k] || "";
 
 export const payments = () => ({
@@ -93,6 +95,13 @@ export async function takenAll() {
     }),
   ]);
   for (const [id, ranges] of Object.entries(paid)) spaces[id].push(...ranges);
+  // The two rooms are inside the flat: a whole-flat booking takes both rooms,
+  // and a booking of either room takes the whole flat.
+  const flatOnly = [...spaces.flat];
+  for (const room of ROOMS_IN_FLAT) {
+    spaces.flat.push(...spaces[room]);
+    spaces[room].push(...flatOnly);
+  }
   return { spaces, synced };
 }
 

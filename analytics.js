@@ -37,7 +37,7 @@
     box.id = 'fhs-consent';
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-label', 'Cookie choice');
-    box.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:50;max-width:560px;margin:0 auto;' +
+    box.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:2147483647;max-width:560px;margin:0 auto;' +
       'background:var(--surface,#fff);color:var(--ink,#1c2129);border:1px solid var(--line,#d7d4c7);' +
       'border-radius:14px;padding:16px 18px;box-shadow:0 8px 30px rgba(0,0,0,.18);font-size:.88rem;line-height:1.45;';
     var p = document.createElement('p');
