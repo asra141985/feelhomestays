@@ -2,7 +2,7 @@
    Nothing is loaded from Google until the visitor accepts in the banner.
    With both IDs empty this file does nothing and no banner appears. */
 (function () {
-  var GA_ID = '';   // Google Analytics measurement ID, e.g. 'G-XXXXXXXXXX'
+  var GA_ID = 'G-RPJZZ13TV5';   // Google Analytics measurement ID, e.g. 'G-XXXXXXXXXX'
   var ADS_ID = '';  // optional Google Ads tag ID, e.g. 'AW-1234567890'
 
   var KEY = 'fhs_consent';
