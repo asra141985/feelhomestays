@@ -27,3 +27,5 @@ goes live automatically. No build command; publish directory is the repo root.
 
 Never commit keys to this repository. Without payment keys the booking page
 falls back to a "Send booking request" form (Netlify Forms, form name `booking`).
+
+Booking requests are emailed through Netlify Forms (form detection must stay enabled).
