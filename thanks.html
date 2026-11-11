@@ -179,6 +179,7 @@
   footer p{font-size:.82rem; color:var(--ink-soft); max-width:56ch; margin:8px 0 0;}
   @media (prefers-reduced-motion: no-preference){ .day,.space{transition:background .12s, box-shadow .12s;} }
 </style>
+<script src="analytics.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -198,5 +199,15 @@
     <p>Nordend / Westend, Frankfurt am Main, Germany. One minute from Grüneburgweg U-Bahn.</p>
   </footer>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    var p = JSON.parse(sessionStorage.getItem('fhs_pending') || 'null');
+    if (!p) return;
+    sessionStorage.removeItem('fhs_pending');
+    if (window.fhsTrack) fhsTrack('purchase', { transaction_id: 'fhs-' + Date.now(), currency: 'EUR', value: p.value, payment_type: p.method, items: [{ item_id: p.space, item_name: p.name, price: p.value, quantity: 1 }] });
+  } catch (e) {}
+});
+</script>
 </body>
 </html>

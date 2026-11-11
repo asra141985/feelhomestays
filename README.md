@@ -8,6 +8,7 @@ availability, and card / PayPal checkout.
 - `index.html` – home page
 - `book.html` – booking page (spaces and prices are in the `SPACES` list near the bottom)
 - `thanks.html` – shown after a successful payment
+- `analytics.js` – Google Analytics / Google Ads with a consent banner (set `GA_ID` and optionally `ADS_ID` at the top)
 - `netlify/functions/` – availability, payment start, PayPal return
 - `netlify/lib/shared.mjs` – prices and rules used by the server (keep in step with `book.html`)
 

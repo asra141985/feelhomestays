@@ -180,6 +180,7 @@
   footer p{font-size:.82rem; color:var(--ink-soft); max-width:56ch; margin:8px 0 0;}
   @media (prefers-reduced-motion: no-preference){ .day,.space{transition:background .12s, box-shadow .12s;} }
 </style>
+<script src="analytics.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -456,6 +457,7 @@ $('booking').addEventListener('submit', async e => {
     const rows = [['Space', space().name], ['Arrival', nice(state.cin) + ', from 3:00 PM'], ['Departure', nice(state.cout) + ', before 11:00 AM'], ['Guests', state.guests], ['Total', euro(q.total)]];
     const dl = $('doneList'); dl.textContent = '';
     rows.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; dl.append(dt, dd); });
+    if (window.fhsTrack) fhsTrack('generate_lead', { currency:'EUR', value:q.total, space:state.space });
     $('flow').hidden = true; $('done').hidden = false; $('done').focus(); window.scrollTo(0, 0);
     return;
   }
@@ -465,6 +467,8 @@ $('booking').addEventListener('submit', async e => {
     const data = await res.json().catch(() => ({}));
     if (res.status === 409) { await loadAvailability(); state.cin = state.cout = null; busy = false; render(); return fail('Those dates were just taken. Please pick other dates.'); }
     if (!res.ok || !data.url) throw new Error(data.error || res.status);
+    try { sessionStorage.setItem('fhs_pending', JSON.stringify({ value:q.total, space:state.space, name:space().name, method })); } catch (err) {}
+    if (window.fhsTrack) fhsTrack('begin_checkout', { currency:'EUR', value:q.total, space:state.space, payment_type:method });
     location.href = data.url;
   } catch (err) {
     stop('The payment page could not be opened. Your request reached us, and we will email you a payment link.');
