@@ -3,15 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Feel Home Stays — Frankfurt short-let rooms</title>
-<meta name="description" content="Private rooms and a balconied flat to rent near Grüneburgweg station in Frankfurt am Main — self check-in, real prices, book direct with live availability.">
-<meta name="keywords" content="Frankfurt short-term rental, Grüneburgweg apartment, Nordend room for rent, Frankfurt Airbnb, self check-in Frankfurt, Oeder Weg apartment, Feel Home Stays">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#2F5D5A">
+<title>Feel Home Stays | Rooms &amp; flat to rent in Frankfurt Nordend, book direct</title>
+<meta name="description" content="Furnished private rooms and a 2-bedroom flat with balcony in Frankfurt Nordend, 1 min from Grüneburgweg U-Bahn. Self check-in, business invoices, book direct.">
 <link rel="canonical" href="https://feelhomestays.com/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Feel Home Stays">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://feelhomestays.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Feel Home Stays, Frankfurt Nordend">
 <meta property="og:title" content="Feel Home Stays — Frankfurt short-let rooms">
 <meta property="og:description" content="Private rooms and a balconied flat near Grüneburgweg station, Frankfurt. Self check-in throughout, real pricing, direct booking links.">
 <meta property="og:url" content="https://feelhomestays.com/">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://feelhomestays.com/og.png">
 <meta name="twitter:title" content="Feel Home Stays — Frankfurt short-let rooms">
 <meta name="twitter:description" content="Private rooms and a balconied flat near Grüneburgweg station, Frankfurt. Self check-in throughout, real pricing, direct booking links.">
 <link rel="stylesheet" href="fonts.css">
@@ -237,7 +247,7 @@
   <header class="hero">
     <span class="eyebrow">Nordend · Westend, Frankfurt am Main</span>
     <h1>Feel Home Stays</h1>
-    <p class="sub">Three private rooms and a balconied flat, all one minute from Grüneburgweg station. Self check-in throughout — no meet-and-greet, no waiting around.</p>
+    <p class="sub">Two private rooms and a balconied flat, all one minute from Grüneburgweg station. Self check-in throughout — no meet-and-greet, no waiting around.</p>
 
     <div class="facts">
       <span class="fact"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2v20M2 12h20"/></svg>3 spaces to choose from</span>
@@ -367,7 +377,7 @@
 
   <footer>
     <span class="brand">Feel Home Stays</span>
-    <p>Three Frankfurt short-let spaces, bookable direct. Check live availability and send a booking request above; each space can also be booked on Airbnb.</p>
+    <p>Three Frankfurt short- and mid-term stays, bookable direct. Check live availability above; each space can also be booked on Airbnb or Booking.com. Invoices for company stays on request.</p>
     <p class="legal">Nordend / Westend, Frankfurt am Main, Germany.</p>
     <p class="legal-links"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz / Privacy</a></p>
   </footer>
@@ -378,15 +388,44 @@
 {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
+  "@id": "https://feelhomestays.com/#business",
   "name": "Feel Home Stays",
-  "description": "Private rooms and a balconied flat near Grüneburgweg station in Frankfurt am Main, with self check-in.",
+  "description": "Furnished private rooms and a 2-bedroom flat with balcony in Frankfurt am Main (Nordend/Westend), one minute from Grüneburgweg U-Bahn, with self check-in.",
   "url": "https://feelhomestays.com/",
+  "image": "https://feelhomestays.com/og.png",
+  "logo": "https://feelhomestays.com/apple-touch-icon.png",
+  "email": "frankfurtkey@gmail.com",
+  "priceRange": "€100–€203 per night",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Credit card, PayPal",
+  "checkinTime": "15:00",
+  "checkoutTime": "11:00",
+  "areaServed": "Frankfurt am Main",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Frankfurt am Main",
-    "addressRegion": "Hesse",
+    "addressRegion": "Hessen",
+    "postalCode": "60322",
     "addressCountry": "DE"
   },
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "Self check-in", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Balcony", "value": true}
+  ],
+  "containsPlace": [
+    {"@type": "Room", "name": "Cosy Room in City Center", "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}, "url": "https://feelhomestays.com/book.html#cosy"},
+    {"@type": "Room", "name": "Feel Home Room", "occupancy": {"@type": "QuantitativeValue", "maxValue": 2}, "url": "https://feelhomestays.com/book.html#feelhome"},
+    {"@type": "Apartment", "name": "Flat with Balcony", "numberOfRooms": 2, "occupancy": {"@type": "QuantitativeValue", "maxValue": 4}, "url": "https://feelhomestays.com/book.html#flat"}
+  ],
+  "sameAs": [
+    "https://airbnb.com/h/tfh",
+    "https://www.airbnb.com/rooms/1267830066550109153",
+    "https://www.airbnb.com/rooms/1020203116397338655",
+    "https://www.booking.com/hotel/de/cozy-room-with-balcony-frankfurt-am-main.html",
+    "https://www.booking.com/hotel/de/family-room-frankfurt-am-main.html",
+    "https://www.booking.com/hotel/de/full-flat-in-city-centre-with-balcony.html"
+  ],
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.25",
