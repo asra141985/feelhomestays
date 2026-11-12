@@ -5,12 +5,20 @@ availability, and card / PayPal checkout.
 
 ## Files
 
-- `index.html` – home page
+- `index.html` – home page (English). **Generated – do not edit by hand**
+- `de/`, `fr/`, … – the home page in 49 more languages (generated)
+- `site-src/` – source of the home page: `home.template.html` (layout), `i18n/*.json` (texts per language), `build.py`
+- `img/` – photos
 - `book.html` – booking page (spaces and prices are in the `SPACES` list near the bottom)
 - `thanks.html` – shown after a successful payment
 - `analytics.js` – Google Analytics / Google Ads with a consent banner (set `GA_ID` and optionally `ADS_ID` at the top)
 - `netlify/functions/` – availability, payment start, PayPal return
 - `netlify/lib/shared.mjs` – prices and rules used by the server (keep in step with `book.html`)
+
+## Changing the home page
+
+Edit the template or the texts in `site-src/`, then run `python3 site-src/build.py`
+and commit the result. It rebuilds all language versions and `sitemap.xml`.
 
 ## Publishing
 
