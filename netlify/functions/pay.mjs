@@ -29,10 +29,12 @@ export default async (req) => {
   const clash = (spaces[b.space] || []).some(([a, z]) => a < b.checkout && z > b.checkin);
   if (clash) return json({ error: "taken" }, 409);
 
-  const total = nights * space.rate;
+  const cleaning = space.cleaning || 0;
+  const total = nights * space.rate + cleaning;
   const origin = new URL(req.url).origin;
   const title = `${space.name}: ${b.checkin} to ${b.checkout}`;
-  const detail = `${nights} ${nights === 1 ? "night" : "nights"}, ${guests} ${guests === 1 ? "guest" : "guests"}`;
+  const detail = `${nights} ${nights === 1 ? "night" : "nights"}, ${guests} ${guests === 1 ? "guest" : "guests"}` +
+    (cleaning ? `, incl. EUR ${cleaning} cleaning fee` : "");
 
   try {
     if (b.method === "stripe") {

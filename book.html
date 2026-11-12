@@ -275,10 +275,13 @@
 <script>
 /* ---------- Edit your spaces and prices here ---------- */
 const SPACES = [
-  { id:'cosy',     name:'Cosy Room in City Center', kind:'Private room · Shared flat', specs:'1 sofa bed · Shared bathroom', rate:100, sleeps:2, minNights:1 },
-  { id:'feelhome', name:'Feel Home Room',           kind:'Private room · Shared flat', specs:'4 beds · 1.5 shared baths',     rate:100, sleeps:2, minNights:1 },
-  { id:'flat',     name:'Flat with Balcony',        kind:'Entire place · Balcony',     specs:'1 bedroom · 1 bed · 1 bath',  rate:203, sleeps:4, minNights:30 }
+  { id:'cosy',     name:'Cosy Room in City Center', kind:'Private room · Shared flat', specs:'1 sofa bed · Shared bathroom', rate:100, sleeps:2, minNights:1,  cleaning:0,   open:[] },
+  { id:'feelhome', name:'Feel Home Room',           kind:'Private room · Shared flat', specs:'4 beds · 1.5 shared baths',     rate:100, sleeps:2, minNights:1,  cleaning:0,   open:[] },
+  { id:'flat',     name:'Flat with Balcony',        kind:'Entire place · Balcony',     specs:'1 bedroom · 1 bed · 1 bath',  rate:70,  sleeps:4, minNights:30, cleaning:120, open:[['2027-01-01','2027-04-01']] }
 ];
+/* open: date windows that can be booked, as [first night, checkout day of the last night].
+   An empty list closes the space; leave "open" out to open every date.
+   cleaning: one-off cleaning fee per stay. Keep in step with netlify/lib/shared.mjs. */
 const MONTHS_AHEAD = 18;
 /* ------------------------------------------------------- */
 
@@ -295,7 +298,8 @@ const euro = n => '€' + n.toLocaleString('en-GB');
 const nice = n => fmtDay.format(new Date(n * DAY));
 
 const firstMonth = now.getFullYear() * 12 + now.getMonth();
-const state = { space: SPACES[0].id, guests: 1, cin: null, cout: null, month: firstMonth };
+const bookable = s => !s.open || s.open.some(([a, z]) => fromIso(z) > TODAY);
+const state = { space: (SPACES.find(bookable) || SPACES[0]).id, guests: 1, cin: null, cout: null, month: firstMonth };
 let PAY = LIVE ? { stripe:false, paypal:false } : { stripe:true, paypal:true };
 let busy = false;
 const taken = {};            // space id -> Set of taken nights (day numbers)
@@ -303,7 +307,19 @@ const synced = {};           // space id -> true when the live calendar was read
 SPACES.forEach(s => { taken[s.id] = new Set(); });
 
 const space = () => SPACES.find(s => s.id === state.space);
-const nightFree = d => d >= TODAY && !taken[state.space].has(d);
+const isOpen = (s, d) => !s.open || s.open.some(([a, z]) => d >= fromIso(a) && d < fromIso(z));
+const nightFree = d => d >= TODAY && isOpen(space(), d) && !taken[state.space].has(d);
+// Start the calendar at the first month that can be booked.
+function jumpToOpen() {
+  const s = space(); state.month = firstMonth;
+  if (!s.open) return;
+  const starts = s.open.filter(([a, z]) => fromIso(z) > TODAY).map(([a]) => Math.max(fromIso(a), TODAY)).sort((x, y) => x - y);
+  if (!starts.length) return;
+  const dt = new Date(starts[0] * DAY);
+  state.month = Math.min(Math.max(dt.getUTCFullYear() * 12 + dt.getUTCMonth(), firstMonth), firstMonth + MONTHS_AHEAD - 2);
+}
+const fmtShort = new Intl.DateTimeFormat('en-GB', { day:'numeric', month:'short', year:'numeric', timeZone:'UTC' });
+const openText = s => s.open.filter(([a, z]) => fromIso(z) > TODAY).map(([a, z]) => fmtShort.format(new Date(a + 'T00:00:00Z')) + ' – ' + fmtShort.format(new Date((fromIso(z) - 1) * DAY))).join(', ');
 const rangeFree = (a, b) => { for (let d = a; d < b; d++) if (!nightFree(d)) return false; return true; };
 
 function setRanges(id, ranges) {
@@ -336,12 +352,18 @@ function renderSpaces() {
     const label = document.createElement('label'); label.className = 'space';
     const input = document.createElement('input');
     input.type = 'radio'; input.name = 'spacePick'; input.id = 'space_' + s.id; input.value = s.id; input.checked = s.id === state.space;
-    input.addEventListener('change', () => { state.space = s.id; state.cin = state.cout = null; renderGuests(); render(); });
+    input.addEventListener('change', () => { state.space = s.id; state.cin = state.cout = null; jumpToOpen(); renderGuests(); render(); });
     label.append(input);
     const add = (cls, text) => { const el = document.createElement('span'); el.className = cls; el.textContent = text; label.append(el); return el; };
     add('kind', s.kind); add('name', s.name); add('specs', s.specs + ' · Sleeps ' + s.sleeps);
     const rate = add('rate', ''); const b = document.createElement('b'); b.textContent = euro(s.rate); const per = document.createElement('span'); per.textContent = ' / night'; rate.append(b, per);
-    if (s.minNights > 1) add('rule', 'Stays of ' + s.minNights + '+ nights');
+    if (!bookable(s)) add('rule', 'Not available at the moment');
+    else {
+      if (s.minNights >= 28) add('rule', 'Monthly stays · ' + euro(s.rate * 30) + ' per 30 nights');
+      else if (s.minNights > 1) add('rule', 'Stays of ' + s.minNights + '+ nights');
+      if (s.open) add('rule', 'Open ' + openText(s));
+      if (s.cleaning) add('rule', '+ ' + euro(s.cleaning) + ' cleaning fee per stay');
+    }
     box.append(label);
   });
 }
@@ -396,19 +418,21 @@ function pick(d) {
 function quote() {
   if (state.cin === null || state.cout === null) return null;
   const nights = state.cout - state.cin;
-  return { nights, total: nights * space().rate, short: nights < space().minNights };
+  const s = space();
+  return { nights, stay: nights * s.rate, cleaning: s.cleaning || 0, total: nights * s.rate + (s.cleaning || 0), short: nights < s.minNights };
 }
 
 function renderTotal() {
   const q = quote(), s = space(), bar = $('total');
   bar.classList.toggle('bad', !!(q && q.short));
-  if (state.cin === null) { $('when').textContent = 'Choose an arrival day'; $('sum').textContent = euro(s.rate) + ' / night'; }
+  if (!bookable(s)) { $('when').textContent = s.name + ' is not available at the moment.'; $('sum').textContent = ''; }
+  else if (state.cin === null) { $('when').textContent = 'Choose an arrival day'; $('sum').textContent = euro(s.rate) + ' / night'; }
   else if (!q) { $('when').textContent = nice(state.cin) + ' → choose a departure day'; $('sum').textContent = euro(s.rate) + ' / night'; }
   else if (q.short) { $('when').textContent = s.name + ' needs at least ' + s.minNights + ' nights. You picked ' + q.nights + '.'; $('sum').textContent = ''; }
   else {
     $('when').textContent = nice(state.cin) + ' → ' + nice(state.cout) + ' · ' + q.nights + (q.nights === 1 ? ' night' : ' nights');
     $('sum').textContent = euro(q.total) + ' ';
-    const small = document.createElement('small'); small.textContent = 'total'; $('sum').append(small);
+    const small = document.createElement('small'); small.textContent = q.cleaning ? 'total (' + euro(q.stay) + ' stay + ' + euro(q.cleaning) + ' cleaning)' : 'total'; $('sum').append(small);
   }
   renderPay();
   $('sync').textContent = !LIVE ? '' : synced[state.space]
@@ -453,7 +477,7 @@ $('booking').addEventListener('submit', async e => {
   if (!form.consent.checked) return fail('Tick the box so we may use your details for this request.');
   const method = (e.submitter && e.submitter.dataset.method) || 'request';
   $('f_space').value = space().name; $('f_checkin').value = toIso(state.cin); $('f_checkout').value = toIso(state.cout);
-  $('f_nights').value = q.nights; $('f_guests').value = state.guests; $('f_total').value = 'EUR ' + q.total;
+  $('f_nights').value = q.nights; $('f_guests').value = state.guests; $('f_total').value = 'EUR ' + q.total + (q.cleaning ? ' (incl. EUR ' + q.cleaning + ' cleaning fee)' : '');
   $('f_payment').value = method === 'request' ? 'payment link requested' : method + ' checkout started';
   if (!LIVE) return fail(method === 'request'
     ? 'Preview only: this request was not sent. On feelhomestays.com it arrives in your inbox.'
@@ -467,7 +491,7 @@ $('booking').addEventListener('submit', async e => {
     return stop('The request could not be sent. Check your connection and try again.');
   }
   if (method === 'request') {
-    const rows = [['Space', space().name], ['Arrival', nice(state.cin) + ', from 3:00 PM'], ['Departure', nice(state.cout) + ', before 11:00 AM'], ['Guests', state.guests], ['Total', euro(q.total)]];
+    const rows = [['Space', space().name], ['Arrival', nice(state.cin) + ', from 3:00 PM'], ['Departure', nice(state.cout) + ', before 11:00 AM'], ['Guests', state.guests], ['Total', euro(q.total) + (q.cleaning ? ' (incl. ' + euro(q.cleaning) + ' cleaning fee)' : '')]];
     const dl = $('doneList'); dl.textContent = '';
     rows.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; dl.append(dt, dd); });
     if (window.fhsTrack) fhsTrack('generate_lead', { currency:'EUR', value:q.total, space:state.space });
@@ -490,6 +514,7 @@ $('booking').addEventListener('submit', async e => {
 
 const wanted = location.hash.slice(1);
 if (SPACES.some(s => s.id === wanted)) state.space = wanted;
+jumpToOpen();
 if (wanted === 'payment-failed') { $('msg').textContent = 'The payment did not go through and nothing was charged. Please try again.'; $('msg').hidden = false; }
 renderSpaces(); renderGuests(); render();
 loadAvailability().then(render);

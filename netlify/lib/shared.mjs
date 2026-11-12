@@ -8,11 +8,27 @@
 // Keys live only in these variables. Never put them in a page or in this file.
 
 // Keep names, prices and rules identical to the SPACES list in book.html.
+//   open      date windows that can be booked: [first night, checkout day of the last night].
+//             An empty list closes the space completely; leave it out to open every date.
+//   cleaning  one-off cleaning fee per stay, added to the total.
 export const SPACES = {
-  cosy:     { name: "Cosy Room in City Center", rate: 100, sleeps: 2, minNights: 1,  ical: "ICAL_COSY" },
-  feelhome: { name: "Feel Home Room",           rate: 100, sleeps: 2, minNights: 1,  ical: "ICAL_FEELHOME" },
-  flat:     { name: "Flat with Balcony",        rate: 203, sleeps: 4, minNights: 30, ical: "ICAL_FLAT" },
+  cosy:     { name: "Cosy Room in City Center", rate: 100, sleeps: 2, minNights: 1,  cleaning: 0,   open: [], ical: "ICAL_COSY" },
+  feelhome: { name: "Feel Home Room",           rate: 100, sleeps: 2, minNights: 1,  cleaning: 0,   open: [], ical: "ICAL_FEELHOME" },
+  flat:     { name: "Flat with Balcony",        rate: 70,  sleeps: 4, minNights: 30, cleaning: 120, open: [["2027-01-01", "2027-04-01"]], ical: "ICAL_FLAT" },
 };
+
+// Everything outside a space's open windows, as taken ranges.
+export function closedRanges(space) {
+  if (!space.open) return [];
+  const out = [];
+  let from = "2000-01-01";
+  for (const [a, z] of [...space.open].sort()) {
+    if (a > from) out.push([from, a]);
+    if (z > from) from = z;
+  }
+  out.push([from, "2100-01-01"]);
+  return out;
+}
 
 const ROOMS_IN_FLAT = ["cosy", "feelhome"];
 
@@ -112,6 +128,8 @@ export async function takenAll() {
     spaces.flat.push(...spaces[room]);
     spaces[room].push(...flatOnly);
   }
+  // Dates the owner keeps closed. Added last so a closed room does not close the flat.
+  for (const [id, s] of Object.entries(SPACES)) spaces[id].push(...closedRanges(s));
   return { spaces, synced };
 }
 
