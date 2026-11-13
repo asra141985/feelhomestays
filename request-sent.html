@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#2F5D5A">
+<title>Request received by Feel Home Stays</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="fonts.css">
+<style>
+
+  :root{
+    --bg:#EFEEE7;
+    --surface:#FFFFFF;
+    --surface-2:#E3E1D5;
+    --ink:#1C2129;
+    --ink-soft:#5B6069;
+    --accent:#2F5D5A;
+    --accent-ink:#F4F7F6;
+    --accent-2:#B5762E;
+    --line:#D7D4C7;
+    --warn:#A23B2A;
+    --radius:14px;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14171B; --surface:#1B1F24; --surface-2:#22262C; --ink:#EDEBE3; --ink-soft:#A6AAB0;
+      --accent:#6FA79F; --accent-ink:#10201E; --accent-2:#E0A85E; --line:#2C3036; --warn:#E58A78;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14171B; --surface:#1B1F24; --surface-2:#22262C; --ink:#EDEBE3; --ink-soft:#A6AAB0;
+    --accent:#6FA79F; --accent-ink:#10201E; --accent-2:#E0A85E; --line:#2C3036; --warn:#E58A78;
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    padding-inline:20px; margin:0; line-height:1.5;
+  }
+  .wrap{max-width:920px; margin:0 auto;}
+
+  .hero{
+    padding-block:48px 32px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:40px;
+  }
+  .back{
+    display:inline-block; margin-bottom:20px;
+    color:var(--ink-soft); text-decoration:none; font-size:.88rem;
+  }
+  .back:hover{color:var(--ink);}
+  h1{margin:0 0 8px; font-family:'Fraunces', serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:600;}
+  .sub{margin:0; color:var(--ink-soft); font-size:1.05rem;}
+
+  .done{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px 36px;
+    max-width:560px;
+    margin-bottom:48px;
+  }
+  .eyebrow{
+    display:block; font-size:.78rem; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:12px;
+  }
+  .done h2{margin:0 0 16px; font-family:'Fraunces', serif; font-size:1.35rem; font-weight:600;}
+  .done p{margin:0 0 12px; color:var(--ink-soft);}
+  .done p:last-child{margin-bottom:0;}
+  .done a{color:var(--accent); text-decoration:none;}
+  .done a:hover{text-decoration:underline;}
+
+  footer{padding-block:32px 48px; border-top:1px solid var(--line);}
+  footer .brand{font-family:'Fraunces', serif; font-size:1.05rem;}
+  footer p{font-size:.82rem; color:var(--ink-soft); max-width:56ch; margin:8px 0 0;}
+  .legal-links{font-size:.8rem; color:var(--ink-soft); margin:10px 0 0;}
+  @media (prefers-reduced-motion: no-preference){}
+</style>
+<script src="analytics.js" defer></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <a class="back" href="index.html">← Feel Home Stays</a>
+    <h1>Request received</h1>
+    <p class="sub">Thank you – we have your booking request.</p>
+  </header>
+  <div class="done">
+    <span class="eyebrow">What happens next</span>
+    <h2>We confirm by email within 24 hours</h2>
+    <p>We check your dates and reply with a confirmation and a secure payment link. Once payment is made, you receive the address, digital entry instructions and house guide before your arrival.</p>
+    <p>Check-in is from 3:00 PM, checkout before 11:00 AM.</p>
+    <p><a href="index.html">Back to Feel Home Stays</a></p>
+  </div>
+  <footer>
+    <span class="brand">Feel Home Stays</span>
+    <p>Nordend / Westend, Frankfurt am Main, Germany. One minute from Grüneburgweg U-Bahn.</p>
+    <p class="legal-links"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz / Privacy</a></p>
+  </footer>
+</div>
+</body>
+</html>

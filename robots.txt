@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /thanks.html
+Disallow: /request-sent.html
 Disallow: /api/
 
 Sitemap: https://feelhomestays.com/sitemap.xml

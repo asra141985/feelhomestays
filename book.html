@@ -495,7 +495,7 @@ $('booking').addEventListener('submit', async e => {
     const dl = $('doneList'); dl.textContent = '';
     rows.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; dl.append(dt, dd); });
     if (window.fhsTrack) fhsTrack('generate_lead', { currency:'EUR', value:q.total, space:state.space });
-    $('flow').hidden = true; $('done').hidden = false; $('done').focus(); window.scrollTo(0, 0);
+    location.href = 'request-sent.html';
     return;
   }
   try {
