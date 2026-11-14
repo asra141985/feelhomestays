@@ -12,8 +12,8 @@ availability, and card / PayPal checkout.
 - `book.html` – booking page (spaces and prices are in the `SPACES` list near the bottom)
 - `thanks.html` – shown after a successful payment
 - `analytics.js` – Google Analytics / Google Ads with a consent banner (set `GA_ID` and optionally `ADS_ID` at the top)
-- `netlify/functions/` – availability, payment start, PayPal return
-- `netlify/lib/shared.mjs` – prices and rules used by the server (keep in step with `book.html`)
+- `CNAME`, `.nojekyll` – tell GitHub Pages to serve the site at feelhomestays.com as plain files
+- `server/` – optional booking server (live calendar sync, card / PayPal checkout). **Not running.** See below
 
 ## Changing the home page
 
@@ -22,10 +22,27 @@ and commit the result. It rebuilds all language versions and `sitemap.xml`.
 
 ## Publishing
 
-Connect this repository to the Netlify site. Every change pushed to `main`
-goes live automatically. No build command; publish directory is the repo root.
+The site is hosted on GitHub Pages (repository Settings > Pages, branch `main`,
+folder `/`). Every change pushed to `main` goes live within a minute or two.
+There is no build step and no limit on how often you publish.
 
-## Settings (Netlify > Site configuration > Environment variables)
+## Booking requests
+
+The "Send booking request" form on `book.html` is emailed through Web3Forms.
+The access key is `FORM_KEY` near the bottom of `book.html`; it decides which
+inbox receives the requests.
+
+Which dates can be booked is set by the `open` windows in the `SPACES` list in
+`book.html`. Without the booking server there is no automatic sync with Airbnb
+or Booking.com, so dates are confirmed by email.
+
+## Booking server (optional, not running)
+
+`server/api/` and `server/lib/shared.mjs` hold the code for live availability
+from the Airbnb / Booking.com calendars and for Stripe / PayPal checkout.
+GitHub Pages only serves files, so this code needs a separate host that can
+run it and keep the keys below secret. Once it runs somewhere, put its address
+in `API` in `book.html`.
 
 | Variable | What it is |
 | --- | --- |
@@ -34,7 +51,4 @@ goes live automatically. No build command; publish directory is the repo root.
 | `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET` | PayPal REST app credentials |
 | `PAYPAL_ENV` | `sandbox` while testing, empty for real payments |
 
-Never commit keys to this repository. Without payment keys the booking page
-falls back to a "Send booking request" form (Netlify Forms, form name `booking`).
-
-Booking requests are emailed through Netlify Forms (form detection must stay enabled).
+Never commit keys to this repository.

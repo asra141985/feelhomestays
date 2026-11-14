@@ -1,6 +1,6 @@
 // Shared by the functions: spaces and prices, calendar reading, payment helpers.
 //
-// Environment variables (Netlify > Site configuration > Environment variables):
+// Environment variables (set on whichever host runs this code):
 //   ICAL_COSY, ICAL_FEELHOME, ICAL_FLAT   Airbnb "Export calendar" link per space
 //   STRIPE_SECRET_KEY                     Stripe secret key (sk_test_... to test, sk_live_... for real)
 //   PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET  PayPal REST app credentials

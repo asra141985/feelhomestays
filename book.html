@@ -233,9 +233,8 @@
   <section>
     <div class="step-head"><span class="n">03</span><h2>Your details</h2></div>
     <p class="hint" id="hint3"></p>
-    <form id="booking" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-      <input type="hidden" name="form-name" value="booking">
-      <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+    <form id="booking" name="booking" method="POST" novalidate>
+      <p hidden><label>Leave this empty <input name="botcheck" tabindex="-1" autocomplete="off"></label></p>
       <input type="hidden" name="space" id="f_space">
       <input type="hidden" name="checkin" id="f_checkin">
       <input type="hidden" name="checkout" id="f_checkout">
@@ -281,11 +280,17 @@ const SPACES = [
 ];
 /* open: date windows that can be booked, as [first night, checkout day of the last night].
    An empty list closes the space; leave "open" out to open every date.
-   cleaning: one-off cleaning fee per stay. Keep in step with netlify/lib/shared.mjs. */
+   cleaning: one-off cleaning fee per stay. Keep in step with server/lib/shared.mjs. */
 const MONTHS_AHEAD = 18;
+/* FORM_KEY: Web3Forms access key. Booking requests are emailed to the inbox this key belongs to.
+   The key is meant to be public. Get a new one at https://web3forms.com to change the inbox. */
+const FORM_KEY = '';
+/* API: address of the booking server (live calendar sync and card / PayPal checkout, code in server/).
+   Empty = no server: the calendar shows the "open" windows above and guests send a request. */
+const API = '';
 /* ------------------------------------------------------- */
 
-const LIVE = /(^|\.)feelhomestays\.com$|\.netlify\.app$/.test(location.hostname);
+const LIVE = /(^|\.)feelhomestays\.com$|\.github\.io$/.test(location.hostname);
 const DAY = 864e5;
 const $ = id => document.getElementById(id);
 const toIso = n => new Date(n * DAY).toISOString().slice(0, 10);
@@ -337,8 +342,9 @@ function sampleAvailability() {
 
 async function loadAvailability() {
   if (!LIVE) { sampleAvailability(); $('previewBanner').hidden = false; return; }
+  if (!API) return;
   try {
-    const res = await fetch('/api/availability');
+    const res = await fetch(API + '/api/availability');
     if (!res.ok) throw new Error(res.status);
     const data = await res.json();
     SPACES.forEach(s => { setRanges(s.id, data.spaces && data.spaces[s.id]); synced[s.id] = !!(data.synced && data.synced[s.id]); });
@@ -485,8 +491,14 @@ $('booking').addEventListener('submit', async e => {
   busy = true; renderPay();
   const stop = t => { busy = false; renderPay(); fail(t); };
   try {
-    const res = await fetch('/', { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded' }, body:new URLSearchParams(new FormData(form)).toString() });
-    if (!res.ok) throw new Error(res.status);
+    const fields = Object.fromEntries(new FormData(form));
+    if (!fields.botcheck) {   // a filled trap field means a bot: skip sending, show the same result
+      delete fields.botcheck;
+      const res = await fetch('https://api.web3forms.com/submit', { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+        body: JSON.stringify({ access_key: FORM_KEY, subject: 'Booking request: ' + fields.space + ', ' + fields.checkin + ' to ' + fields.checkout, from_name: 'Feel Home Stays website', ...fields }) });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.success) throw new Error(res.status);
+    }
   } catch (err) {
     return stop('The request could not be sent. Check your connection and try again.');
   }
@@ -499,7 +511,7 @@ $('booking').addEventListener('submit', async e => {
     return;
   }
   try {
-    const res = await fetch('/api/pay', { method:'POST', headers:{ 'Content-Type':'application/json' },
+    const res = await fetch(API + '/api/pay', { method:'POST', headers:{ 'Content-Type':'application/json' },
       body: JSON.stringify({ method, space: state.space, checkin: toIso(state.cin), checkout: toIso(state.cout), guests: state.guests, name: form.name.value.trim(), email: form.email.value.trim() }) });
     const data = await res.json().catch(() => ({}));
     if (res.status === 409) { await loadAvailability(); state.cin = state.cout = null; busy = false; render(); return fail('Those dates were just taken. Please pick other dates.'); }
