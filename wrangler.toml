@@ -1,0 +1,9 @@
+# Cloudflare Worker that runs the booking server in server/.
+# Secret keys are NOT stored here: add them in the Cloudflare dashboard
+# (Worker > Settings > Variables and Secrets) as type "Secret".
+name = "feelhomestays-booking"
+main = "server/worker.mjs"
+compatibility_date = "2026-11-01"
+
+[vars]
+SITE_URL = "https://feelhomestays.com"

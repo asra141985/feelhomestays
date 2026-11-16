@@ -51,4 +51,15 @@ in `API` in `book.html`.
 | `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET` | PayPal REST app credentials |
 | `PAYPAL_ENV` | `sandbox` while testing, empty for real payments |
 
+| `SITE_URL` | `https://feelhomestays.com` (already set in `wrangler.toml`) |
+
 Never commit keys to this repository.
+
+### Running it on Cloudflare Workers (free)
+
+`wrangler.toml` and `server/worker.mjs` make the server deployable as a
+Cloudflare Worker. In the Cloudflare dashboard: Workers & Pages > Create >
+import this GitHub repository. Then under the Worker's Settings > Variables and
+Secrets add the variables above as type "Secret". Finally put the Worker's
+address (e.g. `https://feelhomestays-booking.<name>.workers.dev`) in `API` in
+`book.html`. Only feelhomestays.com is allowed to call it from the browser.
