@@ -509,18 +509,26 @@
     border:1.5px solid transparent;
     background:linear-gradient(#FBF6FF,#FFF3F8) padding-box, var(--holo) border-box;
   }
-  .inside{margin-top:48px; display:grid; gap:22px;}
-  .inside .gallery{margin-top:0;}
-  .tour{
-    position:relative; width:min(100%, 340px); margin-inline:auto; aspect-ratio:9/16;
-    border-radius:28px; overflow:hidden; border:2px solid transparent;
-    background:linear-gradient(#111,#111) padding-box, var(--holo) border-box;
-    box-shadow:0 30px 60px -30px rgba(120,70,240,.5), 0 14px 40px -24px rgba(240,90,150,.4);
+  .hero-video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+    border-radius:999px 999px 28px 28px; background:#111;
   }
-  .tour video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:#111;}
-  @media (min-width:1000px){
-    .inside{grid-template-columns:300px minmax(0,1fr); align-items:stretch;}
-    .tour{width:100%; aspect-ratio:auto; min-height:520px; margin:0;}
+  .js-video .hero-video{opacity:0; pointer-events:none; transition:opacity .4s ease;}
+  .js-video .hero-photo.playing .hero-video{opacity:1; pointer-events:auto;}
+  .hero-photo.playing .hero-badge, .hero-photo.playing .hero-play{display:none;}
+  .hero-play{
+    position:absolute; left:50%; top:50%; width:84px; height:84px; margin:-42px 0 0 -42px; padding:0;
+    border-radius:50%; cursor:pointer; border:2px solid transparent;
+    background:linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.92)) padding-box, var(--holo) border-box;
+    box-shadow:0 18px 40px -14px rgba(36,27,58,.55); backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center; transition:transform .25s ease;
+  }
+  .hero-play:hover{transform:scale(1.07);}
+  .hero-play svg{width:30px; height:30px; margin-left:5px; fill:var(--accent);}
+  .hero-play::after{content:""; position:absolute; inset:-10px; border-radius:50%; border:1.5px solid rgba(255,255,255,.75);}
+  @media (prefers-reduced-motion: no-preference){
+    .hero-play::after{animation:ring 2.4s ease-out infinite;}
+    @keyframes ring{from{transform:scale(.92); opacity:.9;} to{transform:scale(1.35); opacity:0;}}
   }
 </style>
 <script src="/analytics.js" defer></script>
@@ -612,6 +620,9 @@
     </div>
     <div class="hero-photo">
       <img src="/img/hero.webp" width="1200" height="900" alt="Διαμέρισμα με μπαλκόνι – Μπαλκόνι" fetchpriority="high">
+      <video class="hero-video" controls playsinline preload="none" poster="/img/hero.webp" width="480" height="854" aria-label="Διαμέρισμα με μπαλκόνι – video">
+        <source src="/img/house-tour.mp4" type="video/mp4">
+      </video>
       <div class="hero-badge"><span class="star">★</span><b>4.6</b> Airbnb · Διαμέρισμα με μπαλκόνι</div>
     </div>
   </div>
@@ -715,12 +726,6 @@
   <div class="wrap">
     <span class="eyebrow">Στο εσωτερικό</span>
     <h2>Φωτεινό, ζεστό και πλήρως επιπλωμένο</h2>
-    <div class="inside">
-    <div class="tour">
-      <video controls playsinline preload="none" poster="/img/house-tour-poster.webp" width="480" height="854" aria-label="Διαμέρισμα με μπαλκόνι – video">
-        <source src="/img/house-tour.mp4" type="video/mp4">
-      </video>
-    </div>
     <div class="gallery">
       <figure><img src="/img/g-bedroom.webp" width="800" height="600" loading="lazy" alt="Υπνοδωμάτιο"><figcaption>Υπνοδωμάτιο</figcaption></figure>
       <figure><img src="/img/g-balcony.webp" width="800" height="600" loading="lazy" alt="Μπαλκόνι"><figcaption>Μπαλκόνι</figcaption></figure>
@@ -728,7 +733,6 @@
       <figure><img src="/img/g-living.webp" width="800" height="600" loading="lazy" alt="Σαλόνι"><figcaption>Σαλόνι</figcaption></figure>
       <figure><img src="/img/g-bath.webp" width="800" height="600" loading="lazy" alt="Μπάνιο"><figcaption>Μπάνιο</figcaption></figure>
       <figure><img src="/img/g-hall.webp" width="800" height="600" loading="lazy" alt="Διαμέρισμα με μπαλκόνι"></figure>
-    </div>
     </div>
   </div>
 </section>
@@ -787,6 +791,25 @@
     }, {rootMargin:'0px 0px -6% 0px'});
     els.forEach(function(el){ el.classList.add('reveal'); io.observe(el); });
     setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); }, 4000);
+  })();
+</script>
+<script>
+  (function(){
+    var box = document.querySelector('.hero-photo'), v = box && box.querySelector('.hero-video');
+    if (!v) return;
+    document.documentElement.classList.add('js-video');
+    v.removeAttribute('controls');
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'hero-play'; b.setAttribute('aria-label', v.getAttribute('aria-label'));
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>';
+    box.appendChild(b);
+    b.addEventListener('click', function(){
+      box.classList.add('playing'); v.setAttribute('controls', '');
+      var p = v.play(); if (p && p.catch) p.catch(function(){});
+    });
+    v.addEventListener('ended', function(){
+      box.classList.remove('playing'); v.removeAttribute('controls'); v.currentTime = 0;
+    });
   })();
 </script>
 <script type="application/ld+json">
