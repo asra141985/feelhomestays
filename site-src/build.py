@@ -38,7 +38,7 @@ for code, name, og in LANGS:
     if code not in tr: problems.append(f'missing language {code}'); continue
     s = dict(en); s.update(tr[code])
     for k in en:
-        if code!='en' and k not in tr[code] and k not in ('c1_name',): problems.append(f'{code}: missing {k}')
+        if code!='en' and k not in tr[code] and k not in ('c1_name',) and not k.startswith('faq_'): problems.append(f'{code}: missing {k}')
         for ph in re.findall(r'\{n\}', en[k]):
             if '{n}' not in s[k]: problems.append(f'{code}: {k} lost {{n}}')
     for n in (22,14,6): s[f'more{n}'] = s['more'].replace('{n}',str(n))
@@ -47,12 +47,15 @@ for code, name, og in LANGS:
     for n in (10,15,20,30): s[f'mins{n}'] = s['mins'].replace('{n}',str(n))
     menu = '\n'.join(f'          <li><a href="{path(c)}" hreflang="{HREFLANG.get(c,c)}" lang="{HREFLANG.get(c,c)}"{" aria-current=\"true\"" if c==code else ""}>{html.escape(n)}</a></li>' for c,n,_ in LANGS)
     out = tpl
+    if code!='en' and 'faq_h2' not in tr[code]:  # Q&A only where it is translated
+        out = re.sub(r'<!--FAQ-->.*?<!--/FAQ-->\n?', '', out, flags=re.S)
     special = {'LANG':HREFLANG.get(code,code),'DIR':'rtl' if code in RTL else 'ltr','CANON':url(code),'HOME':path(code),
                'HREFLANG':hreflang,'OG_LOCALE':og,'LANG_NAME':html.escape(name),'LANGMENU':menu,
                'meta_desc_json':json.dumps(s['meta_desc'], ensure_ascii=False)}
     def rep(m):
         k = m.group(1)
         if k in special: return special[k]
+        if k.endswith('_json') and k[:-5] in s: return json.dumps(s[k[:-5]], ensure_ascii=False).replace('</', '<\\/')
         if k in s: return html.escape(s[k], quote=True)
         problems.append(f'{code}: unknown key {k}'); return ''
     out = re.sub(r'\{\{(\w+)\}\}', rep, out)

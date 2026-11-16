@@ -536,6 +536,19 @@
     .hero-play::after{animation:ring 2.4s ease-out infinite;}
     @keyframes ring{from{transform:scale(.92); opacity:.9;} to{transform:scale(1.35); opacity:0;}}
   }
+  .faq{margin-top:44px; display:grid; gap:14px; max-width:860px;}
+  .qa{
+    border-radius:22px; border:1.5px solid transparent; padding:0 26px;
+    background:linear-gradient(var(--surface),var(--surface)) padding-box, var(--holo) border-box;
+  }
+  .qa summary{
+    list-style:none; cursor:pointer; padding:22px 0; display:flex; align-items:center; justify-content:space-between; gap:18px;
+    font-family:'Fraunces', Georgia, serif; font-size:1.2rem; font-weight:500; letter-spacing:-.01em;
+  }
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary::after{content:"+"; font-family:'IBM Plex Sans', system-ui, sans-serif; font-size:1.5rem; font-weight:400; color:var(--accent-2); line-height:1; transition:transform .25s ease;}
+  .qa[open] summary::after{transform:rotate(45deg);}
+  .qa p{margin:0; padding:0 0 24px; color:var(--ink-soft); max-width:68ch;}
 </style>
 <script src="/analytics.js" defer></script>
 </head>
@@ -771,6 +784,55 @@
     <div class="closing"><a class="btn" href="/book.html">Verfügbarkeit prüfen &amp; direkt buchen</a></div>
   </div>
 </section>
+
+<!--FAQ-->
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Gut zu wissen</span>
+    <h2>Häufige Fragen vor der Buchung</h2>
+    <div class="faq">
+      <details class="qa" open>
+        <summary>Kann ich einen Monat oder länger bleiben?</summary>
+        <p>Ja. Die Wohnung mit Balkon wird für Monatsaufenthalte ab 30 Nächten angeboten: 70 € pro Nacht (2.100 € pro 30 Nächte) zuzüglich 120 € Endreinigung pro Aufenthalt. Buchbar für Aufenthalte vom 1. Januar bis 31. März 2027.</p>
+      </details>
+      <details class="qa">
+        <summary>Bekomme ich eine Rechnung auf meine Firma?</summary>
+        <p>Ja. Für Geschäftsaufenthalte stellen wir eine Rechnung auf den Namen Ihres Unternehmens aus. Geben Sie einfach bei der Buchung die Firmendaten an.</p>
+      </details>
+      <details class="qa">
+        <summary>Wie funktioniert der Check-in?</summary>
+        <p>Der Check-in läuft komplett digital. Die Zugangsdaten erhalten Sie vor der Anreise per Nachricht. Check-in ist ab 15:00 Uhr, danach können Sie jederzeit anreisen. Check-out ist bis 11:00 Uhr.</p>
+      </details>
+      <details class="qa">
+        <summary>Wie weit ist es zur Messe, zum Hauptbahnhof und zum Flughafen?</summary>
+        <p>Die U-Bahn-Station Grüneburgweg ist 1 Gehminute entfernt. Von dort sind es etwa 10 Minuten in die Innenstadt, 15 Minuten zum Frankfurter Hauptbahnhof, 20 Minuten zur Messe Frankfurt und 30 Minuten zum Flughafen Frankfurt.</p>
+      </details>
+      <details class="qa">
+        <summary>Was ist der Unterschied zwischen den Zimmern und der Wohnung?</summary>
+        <p>Das Cosy Room und das Feel Home Room sind Privatzimmer in derselben Wohngemeinschaft, jeweils für 2 Personen, mit geteiltem Bad. Die Wohnung mit Balkon haben Sie ganz für sich: 1 Schlafzimmer, 1 Bad und ein Balkon, für bis zu 4 Personen, Babybett auf Anfrage.</p>
+      </details>
+      <details class="qa">
+        <summary>Wie buche und bezahle ich?</summary>
+        <p>Wählen Sie auf der Buchungsseite Unterkunft und Zeitraum. Sie sehen sofort den Gesamtpreis, ohne Servicegebühr einer Plattform, und erhalten eine Bestätigung per E-Mail mit Zahlungslink. Bezahlen können Sie per Karte oder PayPal.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Kann ich einen Monat oder länger bleiben?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Die Wohnung mit Balkon wird für Monatsaufenthalte ab 30 Nächten angeboten: 70 € pro Nacht (2.100 € pro 30 Nächte) zuzüglich 120 € Endreinigung pro Aufenthalt. Buchbar für Aufenthalte vom 1. Januar bis 31. März 2027."}},
+    {"@type": "Question", "name": "Bekomme ich eine Rechnung auf meine Firma?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Für Geschäftsaufenthalte stellen wir eine Rechnung auf den Namen Ihres Unternehmens aus. Geben Sie einfach bei der Buchung die Firmendaten an."}},
+    {"@type": "Question", "name": "Wie funktioniert der Check-in?", "acceptedAnswer": {"@type": "Answer", "text": "Der Check-in läuft komplett digital. Die Zugangsdaten erhalten Sie vor der Anreise per Nachricht. Check-in ist ab 15:00 Uhr, danach können Sie jederzeit anreisen. Check-out ist bis 11:00 Uhr."}},
+    {"@type": "Question", "name": "Wie weit ist es zur Messe, zum Hauptbahnhof und zum Flughafen?", "acceptedAnswer": {"@type": "Answer", "text": "Die U-Bahn-Station Grüneburgweg ist 1 Gehminute entfernt. Von dort sind es etwa 10 Minuten in die Innenstadt, 15 Minuten zum Frankfurter Hauptbahnhof, 20 Minuten zur Messe Frankfurt und 30 Minuten zum Flughafen Frankfurt."}},
+    {"@type": "Question", "name": "Was ist der Unterschied zwischen den Zimmern und der Wohnung?", "acceptedAnswer": {"@type": "Answer", "text": "Das Cosy Room und das Feel Home Room sind Privatzimmer in derselben Wohngemeinschaft, jeweils für 2 Personen, mit geteiltem Bad. Die Wohnung mit Balkon haben Sie ganz für sich: 1 Schlafzimmer, 1 Bad und ein Balkon, für bis zu 4 Personen, Babybett auf Anfrage."}},
+    {"@type": "Question", "name": "Wie buche und bezahle ich?", "acceptedAnswer": {"@type": "Answer", "text": "Wählen Sie auf der Buchungsseite Unterkunft und Zeitraum. Sie sehen sofort den Gesamtpreis, ohne Servicegebühr einer Plattform, und erhalten eine Bestätigung per E-Mail mit Zahlungslink. Bezahlen können Sie per Karte oder PayPal."}}
+  ]
+}
+</script>
+<!--/FAQ-->
 
 <footer>
   <div class="wrap">

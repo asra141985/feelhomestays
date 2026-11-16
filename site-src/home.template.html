@@ -486,6 +486,19 @@
     .hero-play::after{animation:ring 2.4s ease-out infinite;}
     @keyframes ring{from{transform:scale(.92); opacity:.9;} to{transform:scale(1.35); opacity:0;}}
   }
+  .faq{margin-top:44px; display:grid; gap:14px; max-width:860px;}
+  .qa{
+    border-radius:22px; border:1.5px solid transparent; padding:0 26px;
+    background:linear-gradient(var(--surface),var(--surface)) padding-box, var(--holo) border-box;
+  }
+  .qa summary{
+    list-style:none; cursor:pointer; padding:22px 0; display:flex; align-items:center; justify-content:space-between; gap:18px;
+    font-family:'Fraunces', Georgia, serif; font-size:1.2rem; font-weight:500; letter-spacing:-.01em;
+  }
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary::after{content:"+"; font-family:'IBM Plex Sans', system-ui, sans-serif; font-size:1.5rem; font-weight:400; color:var(--accent-2); line-height:1; transition:transform .25s ease;}
+  .qa[open] summary::after{transform:rotate(45deg);}
+  .qa p{margin:0; padding:0 0 24px; color:var(--ink-soft); max-width:68ch;}
 </style>
 <script src="/analytics.js" defer></script>
 </head>
@@ -672,6 +685,55 @@
     <div class="closing"><a class="btn" href="/book.html">{{btn}}</a></div>
   </div>
 </section>
+
+<!--FAQ-->
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">{{faq_eyebrow}}</span>
+    <h2>{{faq_h2}}</h2>
+    <div class="faq">
+      <details class="qa" open>
+        <summary>{{faq_q1}}</summary>
+        <p>{{faq_a1}}</p>
+      </details>
+      <details class="qa">
+        <summary>{{faq_q2}}</summary>
+        <p>{{faq_a2}}</p>
+      </details>
+      <details class="qa">
+        <summary>{{faq_q3}}</summary>
+        <p>{{faq_a3}}</p>
+      </details>
+      <details class="qa">
+        <summary>{{faq_q4}}</summary>
+        <p>{{faq_a4}}</p>
+      </details>
+      <details class="qa">
+        <summary>{{faq_q5}}</summary>
+        <p>{{faq_a5}}</p>
+      </details>
+      <details class="qa">
+        <summary>{{faq_q6}}</summary>
+        <p>{{faq_a6}}</p>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": {{faq_q1_json}}, "acceptedAnswer": {"@type": "Answer", "text": {{faq_a1_json}}}},
+    {"@type": "Question", "name": {{faq_q2_json}}, "acceptedAnswer": {"@type": "Answer", "text": {{faq_a2_json}}}},
+    {"@type": "Question", "name": {{faq_q3_json}}, "acceptedAnswer": {"@type": "Answer", "text": {{faq_a3_json}}}},
+    {"@type": "Question", "name": {{faq_q4_json}}, "acceptedAnswer": {"@type": "Answer", "text": {{faq_a4_json}}}},
+    {"@type": "Question", "name": {{faq_q5_json}}, "acceptedAnswer": {"@type": "Answer", "text": {{faq_a5_json}}}},
+    {"@type": "Question", "name": {{faq_q6_json}}, "acceptedAnswer": {"@type": "Answer", "text": {{faq_a6_json}}}}
+  ]
+}
+</script>
+<!--/FAQ-->
 
 <footer>
   <div class="wrap">

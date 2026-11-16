@@ -536,6 +536,19 @@
     .hero-play::after{animation:ring 2.4s ease-out infinite;}
     @keyframes ring{from{transform:scale(.92); opacity:.9;} to{transform:scale(1.35); opacity:0;}}
   }
+  .faq{margin-top:44px; display:grid; gap:14px; max-width:860px;}
+  .qa{
+    border-radius:22px; border:1.5px solid transparent; padding:0 26px;
+    background:linear-gradient(var(--surface),var(--surface)) padding-box, var(--holo) border-box;
+  }
+  .qa summary{
+    list-style:none; cursor:pointer; padding:22px 0; display:flex; align-items:center; justify-content:space-between; gap:18px;
+    font-family:'Fraunces', Georgia, serif; font-size:1.2rem; font-weight:500; letter-spacing:-.01em;
+  }
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary::after{content:"+"; font-family:'IBM Plex Sans', system-ui, sans-serif; font-size:1.5rem; font-weight:400; color:var(--accent-2); line-height:1; transition:transform .25s ease;}
+  .qa[open] summary::after{transform:rotate(45deg);}
+  .qa p{margin:0; padding:0 0 24px; color:var(--ink-soft); max-width:68ch;}
 </style>
 <script src="/analytics.js" defer></script>
 </head>
@@ -771,6 +784,55 @@
     <div class="closing"><a class="btn" href="/book.html">Check dates &amp; book direct</a></div>
   </div>
 </section>
+
+<!--FAQ-->
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Good to know</span>
+    <h2>Questions guests ask before booking</h2>
+    <div class="faq">
+      <details class="qa" open>
+        <summary>Can I stay for a month or longer?</summary>
+        <p>Yes. The Flat with Balcony is offered for monthly stays of 30 nights or more at €70 per night (€2,100 per 30 nights) plus a €120 cleaning fee per stay. It is open for stays from 1 January to 31 March 2027.</p>
+      </details>
+      <details class="qa">
+        <summary>Can I get an invoice for my company?</summary>
+        <p>Yes. For business stays we issue an invoice in your company&#x27;s name. Just tell us the company details when you book.</p>
+      </details>
+      <details class="qa">
+        <summary>How does check-in work?</summary>
+        <p>Check-in is fully digital. Entry instructions reach you by message before you arrive, check-in is from 3:00 pm and you can arrive at any time after that. Check-out is by 11:00 am.</p>
+      </details>
+      <details class="qa">
+        <summary>How far is it to the Messe, the main station and the airport?</summary>
+        <p>Grüneburgweg U-Bahn station is a 1-minute walk. From there it is about 10 minutes to the city centre, 15 minutes to Frankfurt Hauptbahnhof, 20 minutes to Messe Frankfurt and 30 minutes to Frankfurt Airport.</p>
+      </details>
+      <details class="qa">
+        <summary>What is the difference between the rooms and the flat?</summary>
+        <p>The Cosy Room and the Feel Home Room are private rooms in the same shared flat, each sleeping 2, with a shared bathroom. The Flat with Balcony is the whole place to yourselves: 1 bedroom, 1 bathroom and a balcony, sleeping up to 4, with a baby cot on request.</p>
+      </details>
+      <details class="qa">
+        <summary>How do I book and pay?</summary>
+        <p>Choose your space and dates on the booking page. You see the full price straight away, with no platform service fee, and receive an email confirmation with a payment link. You can pay by card or PayPal.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can I stay for a month or longer?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Flat with Balcony is offered for monthly stays of 30 nights or more at €70 per night (€2,100 per 30 nights) plus a €120 cleaning fee per stay. It is open for stays from 1 January to 31 March 2027."}},
+    {"@type": "Question", "name": "Can I get an invoice for my company?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. For business stays we issue an invoice in your company's name. Just tell us the company details when you book."}},
+    {"@type": "Question", "name": "How does check-in work?", "acceptedAnswer": {"@type": "Answer", "text": "Check-in is fully digital. Entry instructions reach you by message before you arrive, check-in is from 3:00 pm and you can arrive at any time after that. Check-out is by 11:00 am."}},
+    {"@type": "Question", "name": "How far is it to the Messe, the main station and the airport?", "acceptedAnswer": {"@type": "Answer", "text": "Grüneburgweg U-Bahn station is a 1-minute walk. From there it is about 10 minutes to the city centre, 15 minutes to Frankfurt Hauptbahnhof, 20 minutes to Messe Frankfurt and 30 minutes to Frankfurt Airport."}},
+    {"@type": "Question", "name": "What is the difference between the rooms and the flat?", "acceptedAnswer": {"@type": "Answer", "text": "The Cosy Room and the Feel Home Room are private rooms in the same shared flat, each sleeping 2, with a shared bathroom. The Flat with Balcony is the whole place to yourselves: 1 bedroom, 1 bathroom and a balcony, sleeping up to 4, with a baby cot on request."}},
+    {"@type": "Question", "name": "How do I book and pay?", "acceptedAnswer": {"@type": "Answer", "text": "Choose your space and dates on the booking page. You see the full price straight away, with no platform service fee, and receive an email confirmation with a payment link. You can pay by card or PayPal."}}
+  ]
+}
+</script>
+<!--/FAQ-->
 
 <footer>
   <div class="wrap">
