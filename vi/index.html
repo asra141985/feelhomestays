@@ -509,6 +509,19 @@
     border:1.5px solid transparent;
     background:linear-gradient(#FBF6FF,#FFF3F8) padding-box, var(--holo) border-box;
   }
+  .inside{margin-top:48px; display:grid; gap:22px;}
+  .inside .gallery{margin-top:0;}
+  .tour{
+    position:relative; width:min(100%, 340px); margin-inline:auto; aspect-ratio:9/16;
+    border-radius:28px; overflow:hidden; border:2px solid transparent;
+    background:linear-gradient(#111,#111) padding-box, var(--holo) border-box;
+    box-shadow:0 30px 60px -30px rgba(120,70,240,.5), 0 14px 40px -24px rgba(240,90,150,.4);
+  }
+  .tour video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:#111;}
+  @media (min-width:1000px){
+    .inside{grid-template-columns:300px minmax(0,1fr); align-items:stretch;}
+    .tour{width:100%; aspect-ratio:auto; min-height:520px; margin:0;}
+  }
 </style>
 <script src="/analytics.js" defer></script>
 </head>
@@ -702,6 +715,12 @@
   <div class="wrap">
     <span class="eyebrow">Bên trong</span>
     <h2>Sáng sủa, ấm cúng và đầy đủ nội thất</h2>
+    <div class="inside">
+    <div class="tour">
+      <video controls playsinline preload="none" poster="/img/house-tour-poster.webp" width="480" height="854" aria-label="Căn hộ có ban công – video">
+        <source src="/img/house-tour.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="gallery">
       <figure><img src="/img/g-bedroom.webp" width="800" height="600" loading="lazy" alt="Phòng ngủ"><figcaption>Phòng ngủ</figcaption></figure>
       <figure><img src="/img/g-balcony.webp" width="800" height="600" loading="lazy" alt="Ban công"><figcaption>Ban công</figcaption></figure>
@@ -709,6 +728,7 @@
       <figure><img src="/img/g-living.webp" width="800" height="600" loading="lazy" alt="Phòng khách"><figcaption>Phòng khách</figcaption></figure>
       <figure><img src="/img/g-bath.webp" width="800" height="600" loading="lazy" alt="Phòng tắm"><figcaption>Phòng tắm</figcaption></figure>
       <figure><img src="/img/g-hall.webp" width="800" height="600" loading="lazy" alt="Căn hộ có ban công"></figure>
+    </div>
     </div>
   </div>
 </section>
