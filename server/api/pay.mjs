@@ -1,7 +1,7 @@
 // Starts a payment for a stay. The price is worked out here from the dates,
 // never taken from the browser, and the dates are re-checked against the
 // calendars right before the guest is sent to Stripe or PayPal.
-import { SPACES, env, payments, takenAll, paypal, json } from "../lib/shared.mjs";
+import { SPACES, env, payments, takenAll, paypal, json, siteOrigin } from "../lib/shared.mjs";
 
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
 const DAY = 864e5;
@@ -31,7 +31,8 @@ export default async (req) => {
 
   const cleaning = space.cleaning || 0;
   const total = nights * space.rate + cleaning;
-  const origin = new URL(req.url).origin;
+  const origin = siteOrigin(req);          // the website
+  const self = new URL(req.url).origin;    // this server
   const title = `${space.name}: ${b.checkin} to ${b.checkout}`;
   const detail = `${nights} ${nights === 1 ? "night" : "nights"}, ${guests} ${guests === 1 ? "guest" : "guests"}` +
     (cleaning ? `, incl. EUR ${cleaning} cleaning fee` : "");
@@ -76,7 +77,7 @@ export default async (req) => {
         brand_name: "Feel Home Stays",
         user_action: "PAY_NOW",
         shipping_preference: "NO_SHIPPING",
-        return_url: `${origin}/api/paypal-return`,
+        return_url: `${self}/api/paypal-return`,
         cancel_url: `${origin}/book.html#${b.space}`,
       },
     });
