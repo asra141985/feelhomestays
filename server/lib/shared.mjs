@@ -5,6 +5,7 @@
 //   STRIPE_SECRET_KEY                     Stripe secret key (sk_test_... to test, sk_live_... for real)
 //   PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET  PayPal REST app credentials
 //   PAYPAL_ENV                            "sandbox" to test, leave empty for real payments
+//   SITE_URL                              https://feelhomestays.com when the server has its own address
 // Keys live only in these variables. Never put them in a page or in this file.
 
 // Keep names, prices and rules identical to the SPACES list in book.html.
@@ -32,7 +33,15 @@ export function closedRanges(space) {
 
 const ROOMS_IN_FLAT = ["cosy", "feelhome"];
 
-export const env = (k) => process.env[k] || "";
+// Settings come from the host: process.env on Node hosts, or setEnv() on
+// Cloudflare Workers (see server/worker.mjs).
+let ENV = (typeof process !== "undefined" && process.env) || {};
+export const setEnv = (e) => { ENV = e || {}; };
+export const env = (k) => ENV[k] || "";
+
+// Address of the website guests return to after paying. Set SITE_URL when the
+// server runs on a different address than the site (e.g. a Cloudflare Worker).
+export const siteOrigin = (req) => (env("SITE_URL") || new URL(req.url).origin).replace(/\/+$/, "");
 
 export const payments = () => ({
   stripe: !!env("STRIPE_SECRET_KEY"),
@@ -138,7 +147,7 @@ const paypalBase = () =>
 
 export async function paypal(path, body) {
   const base = paypalBase();
-  const basic = Buffer.from(`${env("PAYPAL_CLIENT_ID")}:${env("PAYPAL_CLIENT_SECRET")}`).toString("base64");
+  const basic = btoa(`${env("PAYPAL_CLIENT_ID")}:${env("PAYPAL_CLIENT_SECRET")}`);
   const tok = await fetch(`${base}/v1/oauth2/token`, {
     method: "POST",
     headers: { authorization: `Basic ${basic}`, "content-type": "application/x-www-form-urlencoded" },
