@@ -64,7 +64,8 @@
 "s2_p": "Arahan masuk digital dihantar melalui mesej sebelum daftar masuk, dari 3:00 petang.",
 "s3_h": "Masuk sendiri",
 "s3_p": "Tiba pada bila-bila masa yang sesuai. Daftar keluar sebelum 11:00 pagi.",
-"footer_p": "Tiga penginapan berperabot di Frankfurt, boleh ditempah terus atau melalui Airbnb dan Booking.com. Invois syarikat atas permintaan."
+"footer_p": "Tiga penginapan berperabot di Frankfurt, boleh ditempah terus atau melalui Airbnb dan Booking.com. Invois syarikat atas permintaan.",
+"long_stay": "Penginapan jangka panjang"
 },
 "fil": {
 "meta_title": "Feel Home Stays | Mga kuwarto at flat na paupahan sa Frankfurt Nordend, direktang mag-book",
@@ -131,7 +132,8 @@
 "s2_p": "Ang digital na tagubilin sa pagpasok ay ipapadala sa mensahe bago ang check-in, mula 3:00 pm.",
 "s3_h": "Pumasok nang mag-isa",
 "s3_p": "Dumating kung kailan ka maginhawa. Check-out bago mag-11:00 am.",
-"footer_p": "Tatlong matutuluyang may kasangkapan sa Frankfurt, mabu-book nang direkta o sa Airbnb at Booking.com. May invoice para sa kumpanya kapag hiniling."
+"footer_p": "Tatlong matutuluyang may kasangkapan sa Frankfurt, mabu-book nang direkta o sa Airbnb at Booking.com. May invoice para sa kumpanya kapag hiniling.",
+"long_stay": "Pangmatagalang pananatili"
 },
 "sv": {
 "meta_title": "Feel Home Stays | Rum & lägenhet att hyra i Frankfurt Nordend, boka direkt",
@@ -198,7 +200,8 @@
 "s2_p": "Digitala inpasseringsinstruktioner kommer via meddelande före incheckning, från kl. 15.00.",
 "s3_h": "Släpp in dig själv",
 "s3_p": "Kom när det passar din resa. Utcheckning senast kl. 11.00.",
-"footer_p": "Tre möblerade boenden i Frankfurt, bokningsbara direkt eller via Airbnb och Booking.com. Fakturor för företag på begäran."
+"footer_p": "Tre möblerade boenden i Frankfurt, bokningsbara direkt eller via Airbnb och Booking.com. Fakturor för företag på begäran.",
+"long_stay": "Långtidsboende"
 },
 "da": {
 "meta_title": "Feel Home Stays | Værelser og lejlighed til leje i Frankfurt Nordend, book direkte",
@@ -265,7 +268,8 @@
 "s2_p": "Den digitale adgangsvejledning kommer i en besked før indtjekning, fra kl. 15.00.",
 "s3_h": "Luk dig selv ind",
 "s3_p": "Ankom, når det passer dig. Udtjekning senest kl. 11.00.",
-"footer_p": "Tre møblerede boliger i Frankfurt, som kan bookes direkte eller via Airbnb og Booking.com. Fakturaer til virksomheder på forespørgsel."
+"footer_p": "Tre møblerede boliger i Frankfurt, som kan bookes direkte eller via Airbnb og Booking.com. Fakturaer til virksomheder på forespørgsel.",
+"long_stay": "Langtidsophold"
 },
 "nb": {
 "meta_title": "Feel Home Stays | Rom og leilighet til leie i Frankfurt Nordend, bestill direkte",
@@ -332,7 +336,8 @@
 "s2_p": "Digitale adgangsinstruksjoner kommer i en melding før innsjekk, fra kl. 15.00.",
 "s3_h": "Slipp deg selv inn",
 "s3_p": "Kom når det passer deg. Utsjekk innen kl. 11.00.",
-"footer_p": "Tre møblerte overnattingssteder i Frankfurt, som kan bestilles direkte eller via Airbnb og Booking.com. Fakturaer for bedrifter på forespørsel."
+"footer_p": "Tre møblerte overnattingssteder i Frankfurt, som kan bestilles direkte eller via Airbnb og Booking.com. Fakturaer for bedrifter på forespørsel.",
+"long_stay": "Langtidsopphold"
 },
 "fi": {
 "meta_title": "Feel Home Stays | Vuokrahuoneet ja huoneisto Frankfurtin Nordendissa, varaa suoraan",
@@ -399,7 +404,8 @@
 "s2_p": "Digitaaliset sisäänpääsyohjeet saapuvat viestillä ennen sisäänkirjautumista, klo 15.00 alkaen.",
 "s3_h": "Kulje sisään itse",
 "s3_p": "Saavu silloin kun sinulle sopii. Uloskirjautuminen klo 11.00 mennessä.",
-"footer_p": "Kolme kalustettua majoitusta Frankfurtissa, varattavissa suoraan tai Airbnb:n ja Booking.comin kautta. Laskut yrityksille pyynnöstä."
+"footer_p": "Kolme kalustettua majoitusta Frankfurtissa, varattavissa suoraan tai Airbnb:n ja Booking.comin kautta. Laskut yrityksille pyynnöstä.",
+"long_stay": "Pitkäaikainen majoitus"
 },
 "cs": {
 "meta_title": "Feel Home Stays | Pokoje a byt k pronájmu ve Frankfurtu Nordend, rezervace přímo",
@@ -466,7 +472,8 @@
 "s2_p": "Pokyny k digitálnímu vstupu dostanete zprávou před příjezdem, od 15:00.",
 "s3_h": "Ubytujte se sami",
 "s3_p": "Přijeďte, kdy vám to vyhovuje. Odjezd do 11:00.",
-"footer_p": "Tři zařízená ubytování ve Frankfurtu, rezervace přímo nebo přes Airbnb a Booking.com. Faktury pro firmy na vyžádání."
+"footer_p": "Tři zařízená ubytování ve Frankfurtu, rezervace přímo nebo přes Airbnb a Booking.com. Faktury pro firmy na vyžádání.",
+"long_stay": "Dlouhodobý pobyt"
 },
 "sk": {
 "meta_title": "Feel Home Stays | Izby a byt na prenájom vo Frankfurte Nordend, rezervácia priamo",
@@ -533,7 +540,8 @@
 "s2_p": "Pokyny k digitálnemu vstupu dostanete správou pred príchodom, od 15:00.",
 "s3_h": "Ubytujte sa sami",
 "s3_p": "Príďte, kedy vám to vyhovuje. Odchod do 11:00.",
-"footer_p": "Tri zariadené ubytovania vo Frankfurte, rezervácia priamo alebo cez Airbnb a Booking.com. Faktúry pre firmy na požiadanie."
+"footer_p": "Tri zariadené ubytovania vo Frankfurte, rezervácia priamo alebo cez Airbnb a Booking.com. Faktúry pre firmy na požiadanie.",
+"long_stay": "Dlhodobý pobyt"
 },
 "hu": {
 "meta_title": "Feel Home Stays | Kiadó szobák és lakás Frankfurt Nordendben, közvetlen foglalás",
@@ -600,7 +608,8 @@
 "s2_p": "A digitális belépési útmutató üzenetben érkezik a bejelentkezés előtt, 15:00-tól.",
 "s3_h": "Önállóan beléphet",
 "s3_p": "Érkezzen, amikor Önnek megfelel. Kijelentkezés 11:00-ig.",
-"footer_p": "Három bútorozott szállás Frankfurtban, közvetlenül vagy az Airbnb-n és a Booking.comon foglalható. Céges számla kérésre."
+"footer_p": "Három bútorozott szállás Frankfurtban, közvetlenül vagy az Airbnb-n és a Booking.comon foglalható. Céges számla kérésre.",
+"long_stay": "Hosszú távú tartózkodás"
 },
 "ro": {
 "meta_title": "Feel Home Stays | Camere și apartament de închiriat în Frankfurt Nordend, rezervare directă",
@@ -667,6 +676,7 @@
 "s2_p": "Instrucțiunile de acces digital sosesc prin mesaj înainte de check-in, de la ora 15:00.",
 "s3_h": "Intri singur",
 "s3_p": "Sosește când îți convine. Check-out până la ora 11:00.",
-"footer_p": "Trei cazări mobilate în Frankfurt, rezervabile direct sau pe Airbnb și Booking.com. Facturi pentru firme la cerere."
+"footer_p": "Trei cazări mobilate în Frankfurt, rezervabile direct sau pe Airbnb și Booking.com. Facturi pentru firme la cerere.",
+"long_stay": "Sejur pe termen lung"
 }
 }

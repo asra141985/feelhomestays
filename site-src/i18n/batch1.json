@@ -64,7 +64,8 @@
 "s2_p": "Die digitale Zugangsanleitung kommt vor dem Check-in ab 15:00 Uhr per Nachricht.",
 "s3_h": "Selbst einchecken",
 "s3_p": "Kommen Sie an, wann es Ihnen passt. Check-out bis 11:00 Uhr.",
-"footer_p": "Drei möblierte Unterkünfte in Frankfurt – direkt buchbar oder über Airbnb und Booking.com. Rechnungen für Firmenaufenthalte auf Anfrage."
+"footer_p": "Drei möblierte Unterkünfte in Frankfurt – direkt buchbar oder über Airbnb und Booking.com. Rechnungen für Firmenaufenthalte auf Anfrage.",
+"long_stay": "Langzeitaufenthalt"
 },
 "fr": {
 "meta_title": "Feel Home Stays | Chambres et appartement à louer à Francfort Nordend, réservation directe",
@@ -131,7 +132,8 @@
 "s2_p": "Les instructions d'accès numériques vous parviennent par message avant l'arrivée, à partir de 15 h.",
 "s3_h": "Entrez en toute autonomie",
 "s3_p": "Arrivez quand cela vous convient. Départ avant 11 h.",
-"footer_p": "Trois logements meublés à Francfort, à réserver en direct ou sur Airbnb et Booking.com. Factures pour les entreprises sur demande."
+"footer_p": "Trois logements meublés à Francfort, à réserver en direct ou sur Airbnb et Booking.com. Factures pour les entreprises sur demande.",
+"long_stay": "Séjour longue durée"
 },
 "es": {
 "meta_title": "Feel Home Stays | Habitaciones y piso en alquiler en Fráncfort Nordend, reserva directa",
@@ -198,7 +200,8 @@
 "s2_p": "Las instrucciones de acceso digital te llegan por mensaje antes de la llegada, a partir de las 15:00.",
 "s3_h": "Entra por tu cuenta",
 "s3_p": "Llega cuando mejor te venga. Salida antes de las 11:00.",
-"footer_p": "Tres alojamientos amueblados en Fráncfort, con reserva directa o en Airbnb y Booking.com. Facturas para empresas bajo petición."
+"footer_p": "Tres alojamientos amueblados en Fráncfort, con reserva directa o en Airbnb y Booking.com. Facturas para empresas bajo petición.",
+"long_stay": "Estancia de larga duración"
 },
 "it": {
 "meta_title": "Feel Home Stays | Camere e appartamento in affitto a Francoforte Nordend, prenota direttamente",
@@ -265,7 +268,8 @@
 "s2_p": "Le istruzioni per l'accesso digitale ti arrivano via messaggio prima del check-in, dalle 15:00.",
 "s3_h": "Entra in autonomia",
 "s3_p": "Arriva quando preferisci. Check-out entro le 11:00.",
-"footer_p": "Tre alloggi arredati a Francoforte, prenotabili direttamente o su Airbnb e Booking.com. Fatture per aziende su richiesta."
+"footer_p": "Tre alloggi arredati a Francoforte, prenotabili direttamente o su Airbnb e Booking.com. Fatture per aziende su richiesta.",
+"long_stay": "Soggiorno di lunga durata"
 },
 "pt": {
 "meta_title": "Feel Home Stays | Quartos e apartamento para alugar em Frankfurt Nordend, reserva direta",
@@ -332,7 +336,8 @@
 "s2_p": "As instruções de acesso digital chegam por mensagem antes do check-in, a partir das 15h.",
 "s3_h": "Entre por conta própria",
 "s3_p": "Chegue quando for melhor para você. Check-out até as 11h.",
-"footer_p": "Três acomodações mobiliadas em Frankfurt, com reserva direta ou pelo Airbnb e Booking.com. Faturas para empresas mediante pedido."
+"footer_p": "Três acomodações mobiliadas em Frankfurt, com reserva direta ou pelo Airbnb e Booking.com. Faturas para empresas mediante pedido.",
+"long_stay": "Estadia de longa duração"
 },
 "nl": {
 "meta_title": "Feel Home Stays | Kamers & appartement te huur in Frankfurt Nordend, direct boeken",
@@ -399,7 +404,8 @@
 "s2_p": "De digitale toegangsinstructies krijg je per bericht vóór het inchecken, vanaf 15.00 uur.",
 "s3_h": "Laat jezelf binnen",
 "s3_p": "Kom aan wanneer het jou uitkomt. Uitchecken vóór 11.00 uur.",
-"footer_p": "Drie gemeubileerde verblijven in Frankfurt, direct te boeken of via Airbnb en Booking.com. Facturen voor bedrijven op aanvraag."
+"footer_p": "Drie gemeubileerde verblijven in Frankfurt, direct te boeken of via Airbnb en Booking.com. Facturen voor bedrijven op aanvraag.",
+"long_stay": "Lang verblijf"
 },
 "pl": {
 "meta_title": "Feel Home Stays | Pokoje i mieszkanie do wynajęcia we Frankfurcie (Nordend), rezerwacja bezpośrednia",
@@ -466,7 +472,8 @@
 "s2_p": "Cyfrowe instrukcje wejścia otrzymasz w wiadomości przed zameldowaniem, od 15:00.",
 "s3_h": "Wejdź samodzielnie",
 "s3_p": "Przyjedź, kiedy ci pasuje. Wymeldowanie do 11:00.",
-"footer_p": "Trzy umeblowane noclegi we Frankfurcie – rezerwacja bezpośrednia lub przez Airbnb i Booking.com. Faktury dla firm na życzenie."
+"footer_p": "Trzy umeblowane noclegi we Frankfurcie – rezerwacja bezpośrednia lub przez Airbnb i Booking.com. Faktury dla firm na życzenie.",
+"long_stay": "Pobyt długoterminowy"
 },
 "ru": {
 "meta_title": "Feel Home Stays | Комнаты и квартира в аренду во Франкфурте (Нордэнд), прямое бронирование",
@@ -533,7 +540,8 @@
 "s2_p": "Цифровые инструкции для входа придут сообщением до заселения, с 15:00.",
 "s3_h": "Заселяйтесь самостоятельно",
 "s3_p": "Приезжайте в удобное время. Выезд до 11:00.",
-"footer_p": "Три меблированных варианта жилья во Франкфурте — бронирование напрямую или через Airbnb и Booking.com. Счета для компаний по запросу."
+"footer_p": "Три меблированных варианта жилья во Франкфурте — бронирование напрямую или через Airbnb и Booking.com. Счета для компаний по запросу.",
+"long_stay": "Длительное проживание"
 },
 "uk": {
 "meta_title": "Feel Home Stays | Кімнати та квартира в оренду у Франкфурті (Норденд), пряме бронювання",
@@ -600,7 +608,8 @@
 "s2_p": "Цифрові інструкції для входу надійдуть повідомленням до заселення, з 15:00.",
 "s3_h": "Заселяйтеся самостійно",
 "s3_p": "Приїжджайте, коли зручно. Виїзд до 11:00.",
-"footer_p": "Три мебльовані варіанти житла у Франкфурті — бронювання напряму або через Airbnb і Booking.com. Рахунки для компаній на запит."
+"footer_p": "Три мебльовані варіанти житла у Франкфурті — бронювання напряму або через Airbnb і Booking.com. Рахунки для компаній на запит.",
+"long_stay": "Тривале проживання"
 },
 "tr": {
 "meta_title": "Feel Home Stays | Frankfurt Nordend'de kiralık oda ve daire, doğrudan rezervasyon",
@@ -667,6 +676,7 @@
 "s2_p": "Dijital giriş talimatları, saat 15.00'ten itibaren girişten önce mesajla gelir.",
 "s3_h": "Kendiniz girin",
 "s3_p": "Size uygun saatte gelin. Çıkış saat 11.00'e kadar.",
-"footer_p": "Frankfurt'ta üç eşyalı konaklama; doğrudan ya da Airbnb ve Booking.com üzerinden rezervasyon. Şirketlere istek üzerine fatura."
+"footer_p": "Frankfurt'ta üç eşyalı konaklama; doğrudan ya da Airbnb ve Booking.com üzerinden rezervasyon. Şirketlere istek üzerine fatura.",
+"long_stay": "Uzun süreli konaklama"
 }
 }
